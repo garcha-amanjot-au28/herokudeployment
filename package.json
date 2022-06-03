@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "name": "day01",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garcha-amanjot-au28/herokudeployment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/garcha-amanjot-au28/herokudeployment/issues"
+  },
+  "homepage": "https://github.com/garcha-amanjot-au28/herokudeployment#readme",
+  "description": ""
+}
