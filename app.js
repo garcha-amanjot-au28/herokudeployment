@@ -7,5 +7,5 @@ app.get('/', (req,res) => {
 });
 
 
-const port = process.env.port || 3000
-app.listen(port);
+const Port = process.env.PORT  || 3000
+app.listen(Port);
