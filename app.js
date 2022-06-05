@@ -1,17 +1,48 @@
+// **** heroku app link https://attainuamandeployment.herokuapp.com/ c ****
+
 const express = require('express');
 
 const app = express();
 
 const fs = require('fs');
-const { exit } = require('process');
 
 const bodyparser = express.urlencoded({extended:false})
 
 const port = process.env.PORT || 3001;
 
 app.get('/' , (req,res) => {
+    res.sendFile(`${__dirname}/views/getbook.html`)
+})
+
+app.get('/add' , (req,res) => {
     res.sendFile(`${__dirname}/views/bookForm.html`);
 })
+
+app.post('/getbook' , bodyparser,(req,res) => {
+    let flag = true;
+    let {bookname} = req.body
+    console.log(bookname)
+    fs.readFile('./books.json', function (err,data) {
+        filter()
+        async function filter(){
+        var json = await JSON.parse(data)
+       
+        let book = json.filter((item , index , array) => {
+                if (item.bookName === bookname) return item
+                
+            })
+            if(!book.length ){
+                res.send("Book not found")
+                flag = false;
+            }
+        if (flag == true) res.json(book[0])
+
+        }
+        
+    })
+   
+})
+
 
 app.post("/addBook" , bodyparser,(req,res) => {
    const {bookname,price,isbn,author,publisher,date,edition} = req.body;
@@ -69,5 +100,4 @@ app.post('/bookDelete',bodyparser,(req,res) => {
     })
    
 })
-
 app.listen(port, console.log('App is live on :', port))

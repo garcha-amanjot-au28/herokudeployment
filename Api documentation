@@ -1,0 +1,6 @@
+routes 
+https://attainuamandeployment.herokuapp.com/ : to get book data for a particular book
+https://attainuamandeployment.herokuapp.com/add : to add a book to the library
+https://attainuamandeployment.herokuapp.com/delete : to delete a book from library
+
+
