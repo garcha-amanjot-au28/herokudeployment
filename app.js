@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 
 const fs = require('fs');
+const { exit } = require('process');
 
 const bodyparser = express.urlencoded({extended:false})
 
@@ -28,5 +29,45 @@ app.post("/addBook" , bodyparser,(req,res) => {
     res.send('book added')
 })
 
+app.get('/delete', bodyparser , (req,res) => {
+    res.sendFile(`${__dirname}/views/delete.html`)
+});
+
+app.post('/bookDelete',bodyparser,(req,res) => {
+    let flag = true;
+    let {bookname} = req.body
+    console.log(bookname)
+    fs.readFile('./books.json', function (err,data) {
+        filter()
+        async function filter(){
+        var json = await JSON.parse(data)
+       
+        let book = json.filter((item , index , array) => {
+                if (item.bookName != bookname) return item
+                
+            })
+            if(book.length === json.length){
+                res.send("Book not found")
+                flag = false;
+            }
+        console.log(book)
+        json = book;
+        fs.writeFile("./books.json", JSON.stringify(json), function(err){
+            if (err) throw err;
+            else{
+               
+                if(flag === true) {
+                    console.log('The requested data was deleted from file!');
+                    res.send('Data Deleted');
+                } 
+               
+            }
+          });
+
+        }
+        
+    })
+   
+})
 
 app.listen(port, console.log('App is live on :', port))
