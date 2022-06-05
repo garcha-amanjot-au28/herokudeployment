@@ -1,5 +1,15 @@
 routes 
 https://attainuamandeployment.herokuapp.com/ : to get book data for a particular book
+example : typing "Alchemist" in the search bar provided will retrive the following book data from the database:
+{
+bookName: "Alchemist",
+price: "299",
+ISBN: "123412312",
+authorName: "Poelho Coelho",
+publisherName: "penguin",
+publishedDate: "2022-06-22",
+edition: "first"
+}
 https://attainuamandeployment.herokuapp.com/add : to add a book to the library
 https://attainuamandeployment.herokuapp.com/delete : to delete a book from library
 
